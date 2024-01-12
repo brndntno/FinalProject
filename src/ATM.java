@@ -2,6 +2,7 @@ import java.util.Scanner;
 public class ATM {
     String userName;
     int userPIN;
+    private int transactionHistoryNum = 0;
     public void start() {
         Scanner scan = new Scanner(System.in);
 
@@ -20,6 +21,7 @@ public class ATM {
         Customer customer = new Customer(userName, userPIN);
         Account savings = new Account("savings", customer);
         Account checking = new Account("checking", customer);
+        TransactionHistory TH = new TransactionHistory("");
 
 
 
@@ -47,6 +49,8 @@ public class ATM {
                         int num20s = scan.nextInt();
                         if (numFives * 5 + num20s * 20 == withdraw) {
                             savings.setCurrentBalance(-scan.nextDouble());
+                            transactionHistoryNum++;
+                            TH.setTransactionHistory(transactionHistoryNum + ". Withdrew $" + withdraw + " from savings account\n");
                         }
                     }
                 }
@@ -60,6 +64,8 @@ public class ATM {
                         int num20s = scan.nextInt();
                         if (numFives * 5 + num20s * 20 == withdraw) {
                             checking.setCurrentBalance(-scan.nextDouble());
+                            transactionHistoryNum++;
+                            TH.setTransactionHistory(transactionHistoryNum + ". Withdrew $" + withdraw + " from checking account\n");
                         }
                     }
                 }
@@ -68,11 +74,16 @@ public class ATM {
                 System.out.print("Which account would you like to deposit money into? ");
                 if (scan.nextLine().equals("savings")) {
                     System.out.print("How much money would you like to deposit? ");
-                    savings.setCurrentBalance(scan.nextDouble());
+                    double deposit = scan.nextDouble();
+                    savings.setCurrentBalance(deposit);
+                    transactionHistoryNum++;
+                    TH.setTransactionHistory(transactionHistoryNum + ". Deposited $" + deposit + " into savings account\n");
                 }
                 if (scan.nextLine().equals("checking")) {
                     System.out.print("How much money would you like to deposit? ");
                     checking.setCurrentBalance(scan.nextDouble());
+                    transactionHistoryNum++;
+                    TH.setTransactionHistory(transactionHistoryNum + ". Deposited $" + deposit + " into savings account\n");
                 }
             }
             if (scan.nextInt() == 3) {
@@ -83,6 +94,7 @@ public class ATM {
                     if (transfer <= checking.getCurrentBalance()) {
                         savings.setCurrentBalance(scan.nextDouble());
                         checking.setCurrentBalance(-scan.nextDouble());
+                        transactionHistoryNum++;
                     }
                 }
                 if (scan.nextLine().equals("checking")) {
@@ -91,6 +103,7 @@ public class ATM {
                     if (transfer <= savings.getCurrentBalance()) {
                         checking.setCurrentBalance(scan.nextDouble());
                         savings.setCurrentBalance(-scan.nextDouble());
+                        transactionHistoryNum++;
                     }
                 }
             }

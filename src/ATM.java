@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class ATM {
-    String userName;
-    int userPIN;
+    private String userName;
+    private int userPIN;
     private int transactionHistoryNum = 0;
     public void start() {
         Scanner scan = new Scanner(System.in);
@@ -81,6 +81,7 @@ public class ATM {
                 }
                 if (scan.nextLine().equals("checking")) {
                     System.out.print("How much money would you like to deposit? ");
+                    double deposit = scan.nextDouble();
                     checking.setCurrentBalance(scan.nextDouble());
                     transactionHistoryNum++;
                     TH.setTransactionHistory(transactionHistoryNum + ". Deposited $" + deposit + " into savings account\n");
@@ -92,30 +93,46 @@ public class ATM {
                     System.out.print("How much money would you like to transfer to savings? ");
                     double transfer = scan.nextDouble();
                     if (transfer <= checking.getCurrentBalance()) {
-                        savings.setCurrentBalance(scan.nextDouble());
-                        checking.setCurrentBalance(-scan.nextDouble());
+                        savings.setCurrentBalance(transfer);
+                        checking.setCurrentBalance(-transfer);
                         transactionHistoryNum++;
+                        TH.setTransactionHistory(transactionHistoryNum + ". Transferred $" + transfer + " from checking account into savings account\n");
                     }
                 }
                 if (scan.nextLine().equals("checking")) {
                     System.out.print("How much money would you like to transfer to checking? ");
                     double transfer = scan.nextDouble();
                     if (transfer <= savings.getCurrentBalance()) {
-                        checking.setCurrentBalance(scan.nextDouble());
-                        savings.setCurrentBalance(-scan.nextDouble());
+                        checking.setCurrentBalance(transfer);
+                        savings.setCurrentBalance(-transfer);
                         transactionHistoryNum++;
+                        TH.setTransactionHistory(transactionHistoryNum + ". Transferred $" + transfer + " from savings account into checking account\n");
                     }
                 }
             }
             if (scan.nextInt() == 4) {
-                System.out.println("savings account balance: $" + savings.getCurrentBalance() + "\n" +
-                        "checking account balance: $" + checking.getCurrentBalance());
+                System.out.println("savings account balance: $" + savings.getCurrentBalance() + "\n" + "checking account balance: $" + checking.getCurrentBalance());
+                transactionHistoryNum++;
+                TH.setTransactionHistory(transactionHistoryNum + ". Checked account balances of savings and checking accounts\n");
             }
             if (scan.nextInt() == 5) {
-
+                System.out.println(TH.getTransactionHistory());
+                transactionHistoryNum++;
+                TH.setTransactionHistory(transactionHistoryNum + ". Viewed transaction history");
+            }
+            if (scan.nextInt() == 6) {
+                System.out.print("What is your current PIN? ");
+                if (scan.nextInt() == userPIN) {
+                    System.out.print("What would you like your new PIN to be? ");
+                    int newPIN = scan.nextInt();
+                    customer.setPIN(newPIN);
+                    transactionHistoryNum++;
+                    TH.setTransactionHistory(transactionHistoryNum + ". Changed PIN to " + newPIN + "\n");
+                }
             }
         } else {
             System.out.println("That is incorrect");
+            start();
         }
     }
 }

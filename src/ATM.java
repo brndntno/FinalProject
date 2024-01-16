@@ -27,7 +27,7 @@ public class ATM {
 
 
         System.out.print("What is your PIN? ");
-        if (scan.nextInt() == userPIN) {
+        if (scan.nextInt() == customer.getPIN()) {
             System.out.println("1. Withdraw money\n" +
                     "2. Deposit money\n" +
                     "3. Transfer money between accounts\n" +
@@ -122,7 +122,7 @@ public class ATM {
             }
             if (scan.nextInt() == 6) {
                 System.out.print("What is your current PIN? ");
-                if (scan.nextInt() == userPIN) {
+                if (scan.nextInt() == customer.getPIN()) {
                     System.out.print("What would you like your new PIN to be? ");
                     int newPIN = scan.nextInt();
                     customer.setPIN(newPIN);

@@ -7,15 +7,11 @@ public class ATM {
         Scanner scan = new Scanner(System.in);
 
 
-
-
         System.out.println("Welcome user!");
         System.out.print("What would you like the name for your account to be? ");
         userName = scan.nextLine();
         System.out.print("Please enter a PIN for your new account: ");
         userPIN = scan.nextInt();
-
-
 
 
         Customer customer = new Customer(userName, userPIN);
@@ -24,10 +20,9 @@ public class ATM {
         TransactionHistory TH = new TransactionHistory("");
 
 
-
-
         System.out.print("What is your PIN? ");
-        if (scan.nextInt() == customer.getPIN()) {
+        int pin = scan.nextInt();
+        if (pin == customer.getPIN()) {
             System.out.println("1. Withdraw money\n" +
                     "2. Deposit money\n" +
                     "3. Transfer money between accounts\n" +
@@ -36,10 +31,12 @@ public class ATM {
                     "6. Change PIN\n" +
                     "7. Exit\n");
 
-
-            if (scan.nextInt() == 1) {
+            System.out.print("Enter a number: ");
+            int choice = scan.nextInt();
+            if (choice == 1) {
                 System.out.print("Which account would you like to withdraw money from? ");
-                if (scan.nextLine().equals("savings")) {
+                String account = scan.nextLine();
+                if (account.equals("savings")) {
                     System.out.print("How much money would you like to withdraw? You can only withdraw $5s and $20s and do not include $ in your answer. ");
                     int withdraw = scan.nextInt();
                     if (withdraw % 5 == 0) {
@@ -48,13 +45,13 @@ public class ATM {
                         System.out.print("How many $20s would you like? ");
                         int num20s = scan.nextInt();
                         if (numFives * 5 + num20s * 20 == withdraw) {
-                            savings.setCurrentBalance(-scan.nextDouble());
+                            savings.setCurrentBalance(-withdraw);
                             transactionHistoryNum++;
                             TH.setTransactionHistory(transactionHistoryNum + ". Withdrew $" + withdraw + " from savings account\n");
                         }
                     }
                 }
-                if (scan.nextLine().equals("checking")) {
+                if (account.equals("checking")) {
                     System.out.print("How much money would you like to withdraw? You can only withdraw $5s and $20s and do not include $ in your answer. ");
                     int withdraw = scan.nextInt();
                     if (withdraw % 5 == 0) {
@@ -63,23 +60,24 @@ public class ATM {
                         System.out.print("How many $20s would you like? ");
                         int num20s = scan.nextInt();
                         if (numFives * 5 + num20s * 20 == withdraw) {
-                            checking.setCurrentBalance(-scan.nextDouble());
+                            checking.setCurrentBalance(-withdraw);
                             transactionHistoryNum++;
                             TH.setTransactionHistory(transactionHistoryNum + ". Withdrew $" + withdraw + " from checking account\n");
                         }
                     }
                 }
             }
-            if (scan.nextInt() == 2) {
+            if (choice == 2) {
                 System.out.print("Which account would you like to deposit money into? ");
-                if (scan.nextLine().equals("savings")) {
+                String account = scan.nextLine();
+                if (account.equals("savings")) {
                     System.out.print("How much money would you like to deposit? ");
                     double deposit = scan.nextDouble();
                     savings.setCurrentBalance(deposit);
                     transactionHistoryNum++;
                     TH.setTransactionHistory(transactionHistoryNum + ". Deposited $" + deposit + " into savings account\n");
                 }
-                if (scan.nextLine().equals("checking")) {
+                if (account.equals("checking")) {
                     System.out.print("How much money would you like to deposit? ");
                     double deposit = scan.nextDouble();
                     checking.setCurrentBalance(scan.nextDouble());
@@ -87,7 +85,7 @@ public class ATM {
                     TH.setTransactionHistory(transactionHistoryNum + ". Deposited $" + deposit + " into savings account\n");
                 }
             }
-            if (scan.nextInt() == 3) {
+            if (choice == 3) {
                 System.out.println("Which account would you like to transfer money to? ");
                 if (scan.nextLine().equals("savings")) {
                     System.out.print("How much money would you like to transfer to savings? ");
@@ -110,17 +108,17 @@ public class ATM {
                     }
                 }
             }
-            if (scan.nextInt() == 4) {
+            if (choice == 4) {
                 System.out.println("savings account balance: $" + savings.getCurrentBalance() + "\n" + "checking account balance: $" + checking.getCurrentBalance());
                 transactionHistoryNum++;
                 TH.setTransactionHistory(transactionHistoryNum + ". Checked account balances of savings and checking accounts\n");
             }
-            if (scan.nextInt() == 5) {
+            if (choice == 5) {
                 System.out.println(TH.getTransactionHistory());
                 transactionHistoryNum++;
                 TH.setTransactionHistory(transactionHistoryNum + ". Viewed transaction history");
             }
-            if (scan.nextInt() == 6) {
+            if (choice == 6) {
                 System.out.print("What is your current PIN? ");
                 if (scan.nextInt() == customer.getPIN()) {
                     System.out.print("What would you like your new PIN to be? ");
@@ -129,6 +127,9 @@ public class ATM {
                     transactionHistoryNum++;
                     TH.setTransactionHistory(transactionHistoryNum + ". Changed PIN to " + newPIN + "\n");
                 }
+            }
+            if (choice == 7) {
+                System.exit(0);
             }
         } else {
             System.out.println("That is incorrect");

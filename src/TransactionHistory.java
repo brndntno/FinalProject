@@ -1,5 +1,5 @@
 public class TransactionHistory {
-    private String transactionHistory;
+    private String transactionHistory = "";
 
     public TransactionHistory(String transactionHistory) {
         this.transactionHistory.equals(transactionHistory);

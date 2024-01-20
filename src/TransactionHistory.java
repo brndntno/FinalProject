@@ -2,7 +2,7 @@ public class TransactionHistory {
     private String transactionHistory = "";
 
     public TransactionHistory(String transactionHistory) {
-        this.transactionHistory.equals(transactionHistory);
+        this.transactionHistory = (transactionHistory);
     }
 
     public String getTransactionHistory() {

@@ -22,18 +22,18 @@ public class ATM {
         if (String.valueOf(maybePIN).length() == 4) {
             userPIN = maybePIN;
         } else {
-            System.out.println("It seems that PIN does not have 4 digits. \n Please try again. ");
+            System.out.println("It seems that PIN does not have 4 digits. \nPlease try again. ");
             accountInfo();
         }
 
         Customer customer = new Customer(userName, userPIN);
 
-        System.out.print("Please re-enter your PIN ");
+        System.out.print("Please re-enter your PIN: ");
         int PIN = scan.nextInt();
         if (PIN == customer.getPIN()) {
             accountActions();
         } else {
-            System.out.println("Hm, it seems that is incorrect. \n Please try again. ");
+            System.out.println("Hm, it seems that is incorrect. \nPlease try again. ");
             accountInfo();
         }
     }
@@ -71,7 +71,7 @@ public class ATM {
                         System.out.println("A000" + transactionHistoryNum + ". Withdrew $" + withdraw + " from savings account");
                         TH.setTransactionHistory("A000" + transactionHistoryNum + ". Withdrew $" + withdraw + " from savings account\n");
                     } else {
-                        System.out.println("Unfortunately, your bills did not add up. \n Please try again. ");
+                        System.out.println("Unfortunately, your bills did not add up. \nPlease try again. ");
                         accountActions();
                     }
                 } else {
@@ -93,7 +93,7 @@ public class ATM {
                         System.out.println("A000" + transactionHistoryNum + ". Withdrew $" + withdraw + " from checking account");
                         TH.setTransactionHistory("A000" + transactionHistoryNum + ". Withdrew $" + withdraw + " from checking account\n");
                     } else {
-                        System.out.println("Unfortunately, your bills did not add up. \n Please try again. ");
+                        System.out.println("Unfortunately, your bills did not add up. \nPlease try again. ");
                         accountActions();
                     }
                 } else {
@@ -181,6 +181,8 @@ public class ATM {
                 transactionHistoryNum2++;
                 System.out.println("S000" + transactionHistoryNum2 + ". Changed PIN to " + newPIN);
                 TH.setTransactionHistory("S000" + transactionHistoryNum2 + ". Changed PIN to " + newPIN + "\n");
+            } else {
+                System.out.println("That seems to be incorrect. \nPlease try again. ");
             }
             accountActions();
         }

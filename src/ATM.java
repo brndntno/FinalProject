@@ -62,6 +62,7 @@ public class ATM {
                     if (numFives * 5 + num20s * 20 == withdraw) {
                         savings.setCurrentBalance(-withdraw);
                         transactionHistoryNum++;
+                        System.out.println("A000" + transactionHistoryNum + ". Withdrew $" + withdraw + " from savings account");
                         TH.setTransactionHistory("A000" + transactionHistoryNum + ". Withdrew $" + withdraw + " from savings account\n");
                         accountActions();
                     }
@@ -78,6 +79,7 @@ public class ATM {
                     if (numFives * 5 + num20s * 20 == withdraw) {
                         checking.setCurrentBalance(-withdraw);
                         transactionHistoryNum++;
+                        System.out.println("A000" + transactionHistoryNum + ". Withdrew $" + withdraw + " from checking account");
                         TH.setTransactionHistory("A000" + transactionHistoryNum + ". Withdrew $" + withdraw + " from checking account\n");
                         accountActions();
                     }
@@ -92,6 +94,7 @@ public class ATM {
                 double deposit = scan.nextDouble();
                 savings.setCurrentBalance(deposit);
                 transactionHistoryNum++;
+                System.out.println("A000" + transactionHistoryNum + ". Deposited $" + deposit + " into savings account");
                 TH.setTransactionHistory("A000" + transactionHistoryNum + ". Deposited $" + deposit + " into savings account\n");
             }
             if (account.equals("checking")) {
@@ -99,7 +102,8 @@ public class ATM {
                 double deposit = scan.nextDouble();
                 checking.setCurrentBalance(deposit);
                 transactionHistoryNum++;
-                TH.setTransactionHistory("A000" + transactionHistoryNum + ". Deposited $" + deposit + " into savings account\n");
+                System.out.println("A000" + transactionHistoryNum + ". Deposited $" + deposit + " into checking account");
+                TH.setTransactionHistory("A000" + transactionHistoryNum + ". Deposited $" + deposit + " into checking account\n");
             }
             accountActions();
         }
@@ -113,6 +117,7 @@ public class ATM {
                     savings.setCurrentBalance(transfer);
                     checking.setCurrentBalance(-transfer);
                     transactionHistoryNum++;
+                    System.out.println("A000" + transactionHistoryNum + ". Transferred $" + transfer + " from checking account into savings account");
                     TH.setTransactionHistory("A000" + transactionHistoryNum + ". Transferred $" + transfer + " from checking account into savings account\n");
                 }
             }
@@ -123,6 +128,7 @@ public class ATM {
                     checking.setCurrentBalance(transfer);
                     savings.setCurrentBalance(-transfer);
                     transactionHistoryNum++;
+                    System.out.println("A000" + transactionHistoryNum + ". Transferred $" + transfer + " from savings account into checking account");
                     TH.setTransactionHistory("A000" + transactionHistoryNum + ". Transferred $" + transfer + " from savings account into checking account\n");
                 }
             }
@@ -131,13 +137,15 @@ public class ATM {
         if (choice == 4) {
             System.out.println("savings account balance: $" + savings.getCurrentBalance() + "\n" + "checking account balance: $" + checking.getCurrentBalance());
             transactionHistoryNum2++;
+            System.out.println("S000" + transactionHistoryNum2 + ". Checked account balances of savings and checking accounts");
             TH.setTransactionHistory("S000" + transactionHistoryNum2 + ". Checked account balances of savings and checking accounts\n");
             accountActions();
         }
         if (choice == 5) {
             System.out.println(TH.getTransactionHistory());
             transactionHistoryNum2++;
-            TH.setTransactionHistory("S000" + transactionHistoryNum2 + ". Viewed transaction history");
+            System.out.println("S000" + transactionHistoryNum2 + ". Viewed transaction history");
+            TH.setTransactionHistory("S000" + transactionHistoryNum2 + ". Viewed transaction history\n");
             accountActions();
         }
         if (choice == 6) {
@@ -148,6 +156,7 @@ public class ATM {
                 int newPIN = scan.nextInt();
                 customer.setPIN(newPIN);
                 transactionHistoryNum2++;
+                System.out.println("S000" + transactionHistoryNum2 + ". Changed PIN to " + newPIN);
                 TH.setTransactionHistory("S000" + transactionHistoryNum2 + ". Changed PIN to " + newPIN + "\n");
             }
             accountActions();

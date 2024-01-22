@@ -10,7 +10,6 @@ public class ATM {
     private Customer customer;
     private TransactionHistory TH;
 
-
     public void start() {
         accountInfo();
     }

@@ -23,15 +23,13 @@ public class Account {
 
 
     public double getCurrentBalance() {
-        System.out.println(currentBalance + "get bal");
-        return this.currentBalance;
+        return currentBalance;
 
     }
 
 
     public void setCurrentBalance(double amount) {
-        this.currentBalance += amount;
-        System.out.println(currentBalance);
+        currentBalance += amount;
     }
 
 

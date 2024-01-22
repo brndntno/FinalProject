@@ -7,11 +7,19 @@ public class ATM {
     private Account savings;
     private Account checking;
     private Scanner scan;
+    private Customer customer;
+    private TransactionHistory TH;
+
 
     public void start() {
         accountInfo();
     }
     public void accountInfo() {
+        scan = new Scanner(System.in);
+        customer = new Customer(userName, userPIN);
+        savings = new Account("savings", customer);
+        checking = new Account("checking", customer);
+        TH = new TransactionHistory("");
         scan = new Scanner(System.in);
 
         System.out.println("Welcome banker to Aurum Fundamentals! We are delighted to have you as a new member!");
@@ -27,7 +35,6 @@ public class ATM {
             accountInfo();
         }
 
-        Customer customer = new Customer(userName, userPIN);
 
         System.out.print("Please re-enter your PIN: ");
         int PIN = scan.nextInt();
@@ -40,11 +47,7 @@ public class ATM {
         }
     }
     public void accountActions() {
-        scan = new Scanner(System.in);
-        Customer customer = new Customer(userName, userPIN);
-        savings = new Account("savings", customer);
-        checking = new Account("checking", customer);
-        TransactionHistory TH = new TransactionHistory("");
+
 
         System.out.println("1. Withdraw money\n" +
                 "2. Deposit money\n" +

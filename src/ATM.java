@@ -10,6 +10,7 @@ public class ATM {
     private Customer customer;
     private TransactionHistory TH;
 
+
     public void start() {
         accountInfo();
     }
@@ -138,7 +139,7 @@ public class ATM {
             accountActions();
         }
         if (choice == 3) {
-            System.out.println("Which account would you like to transfer money to? ");
+            System.out.print("Which account would you like to transfer money to? ");
             String transferTo = scan.nextLine();
             if (transferTo.equals("savings")) {
                 System.out.print("How much money would you like to transfer to savings? ");
@@ -204,7 +205,7 @@ public class ATM {
             accountActions();
         }
         if (choice == 7) {
-            System.out.println("Thank you for banking with Aurum Fundamentals! We await your return " + userName);
+            System.out.println("Thank you for banking with Aurum Fundamentals! We await your return " + userName + "!");
             System.exit(0);
         } else {
             accountActions();

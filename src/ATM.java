@@ -14,10 +14,10 @@ public class ATM {
     public void accountInfo() {
         scan = new Scanner(System.in);
 
-        System.out.println("Welcome user!");
+        System.out.println("Welcome banker to Aurum Fundamentals! We are delighted to have you as a new member!");
         System.out.print("What would you like the name for your account to be? ");
         userName = scan.nextLine();
-        System.out.print("Please enter a 4-digit PIN for your new account: ");
+        System.out.print("Welcome " + userName + ". Please enter a 4-digit PIN for your new account: ");
         int maybePIN = scan.nextInt();
         if (String.valueOf(maybePIN).length() == 4) {
             userPIN = maybePIN;
@@ -28,12 +28,12 @@ public class ATM {
 
         Customer customer = new Customer(userName, userPIN);
 
-        System.out.print("What is your PIN? ");
+        System.out.print("Please re-enter your PIN ");
         int PIN = scan.nextInt();
         if (PIN == customer.getPIN()) {
             accountActions();
         } else {
-            System.out.println("That is incorrect");
+            System.out.println("Hm, it seems that is incorrect. \n Please try again. ");
             accountInfo();
         }
     }
@@ -185,7 +185,7 @@ public class ATM {
             accountActions();
         }
         if (choice == 7) {
-            System.out.println("Thank you for banking with us!");
+            System.out.println("Thank you for banking with Aurum Fundamentals! We await your return " + userName);
             System.exit(0);
         } else {
             accountActions();

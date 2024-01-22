@@ -17,8 +17,14 @@ public class ATM {
         System.out.println("Welcome user!");
         System.out.print("What would you like the name for your account to be? ");
         userName = scan.nextLine();
-        System.out.print("Please enter a PIN for your new account: ");
-        userPIN = scan.nextInt();
+        System.out.print("Please enter a 4-digit PIN for your new account: ");
+        int maybePIN = scan.nextInt();
+        if (String.valueOf(maybePIN).length() == 4) {
+            userPIN = maybePIN;
+        } else {
+            System.out.println("It seems that PIN does not have 4 digits. \n Please try again. ");
+            accountInfo();
+        }
 
         Customer customer = new Customer(userName, userPIN);
 
@@ -64,8 +70,13 @@ public class ATM {
                         transactionHistoryNum++;
                         System.out.println("A000" + transactionHistoryNum + ". Withdrew $" + withdraw + " from savings account");
                         TH.setTransactionHistory("A000" + transactionHistoryNum + ". Withdrew $" + withdraw + " from savings account\n");
+                    } else {
+                        System.out.println("Unfortunately, your bills did not add up. \n Please try again. ");
                         accountActions();
                     }
+                } else {
+                    System.out.println("Insufficient funds or withdraw amount invalid");
+                    accountActions();
                 }
             }
             if (account.equals("checking")) {
@@ -81,10 +92,16 @@ public class ATM {
                         transactionHistoryNum++;
                         System.out.println("A000" + transactionHistoryNum + ". Withdrew $" + withdraw + " from checking account");
                         TH.setTransactionHistory("A000" + transactionHistoryNum + ". Withdrew $" + withdraw + " from checking account\n");
+                    } else {
+                        System.out.println("Unfortunately, your bills did not add up. \n Please try again. ");
                         accountActions();
                     }
+                } else {
+                    System.out.println("Insufficient funds or withdraw amount invalid");
+                    accountActions();
                 }
             }
+            accountActions();
         }
         if (choice == 2) {
             System.out.print("Which account would you like to deposit money into? ");
@@ -119,6 +136,9 @@ public class ATM {
                     transactionHistoryNum++;
                     System.out.println("A000" + transactionHistoryNum + ". Transferred $" + transfer + " from checking account into savings account");
                     TH.setTransactionHistory("A000" + transactionHistoryNum + ". Transferred $" + transfer + " from checking account into savings account\n");
+                } else {
+                    System.out.println("It seems you do not have sufficient funds in your checking account to transfer $" + transfer + " to your savings account");
+                    accountActions();
                 }
             }
             if (transferTo.equals("checking")) {
@@ -130,6 +150,9 @@ public class ATM {
                     transactionHistoryNum++;
                     System.out.println("A000" + transactionHistoryNum + ". Transferred $" + transfer + " from savings account into checking account");
                     TH.setTransactionHistory("A000" + transactionHistoryNum + ". Transferred $" + transfer + " from savings account into checking account\n");
+                } else {
+                    System.out.println("It seems you do not have sufficient funds in your savings account to transfer $" + transfer + " to your checking account");
+                    accountActions();
                 }
             }
             accountActions();

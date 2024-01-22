@@ -11,9 +11,9 @@ public class Account {
 
 
     public Account(String type, Customer customer) {
-        accountType = type;
-        currentBalance = 0;
+        this.accountType = type;
         this.customer = customer;
+        currentBalance = 0;
     }
 
 

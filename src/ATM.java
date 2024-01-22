@@ -3,6 +3,7 @@ public class ATM {
     private String userName;
     private int userPIN;
     private int transactionHistoryNum = 0;
+    private int transactionHistoryNum2 = 0;
     private Account savings;
     private Account checking;
     private Scanner scan;
@@ -129,14 +130,14 @@ public class ATM {
         }
         if (choice == 4) {
             System.out.println("savings account balance: $" + savings.getCurrentBalance() + "\n" + "checking account balance: $" + checking.getCurrentBalance());
-            transactionHistoryNum++;
-            TH.setTransactionHistory(transactionHistoryNum + ". Checked account balances of savings and checking accounts\n");
+            transactionHistoryNum2++;
+            TH.setTransactionHistory("S000" + transactionHistoryNum2 + ". Checked account balances of savings and checking accounts\n");
             accountActions();
         }
         if (choice == 5) {
             System.out.println(TH.getTransactionHistory());
-            transactionHistoryNum++;
-            TH.setTransactionHistory(transactionHistoryNum + ". Viewed transaction history");
+            transactionHistoryNum2++;
+            TH.setTransactionHistory("S000" + transactionHistoryNum2 + ". Viewed transaction history");
             accountActions();
         }
         if (choice == 6) {
@@ -146,8 +147,8 @@ public class ATM {
                 System.out.print("What would you like your new PIN to be? ");
                 int newPIN = scan.nextInt();
                 customer.setPIN(newPIN);
-                transactionHistoryNum++;
-                TH.setTransactionHistory(transactionHistoryNum + ". Changed PIN to " + newPIN + "\n");
+                transactionHistoryNum2++;
+                TH.setTransactionHistory("S000" + transactionHistoryNum2 + ". Changed PIN to " + newPIN + "\n");
             }
             accountActions();
         }

@@ -66,7 +66,7 @@ public class ATM {
         scan.nextLine();
         if (choice == 1) {
             // withdraws money from savings or checking account
-            System.out.print("Which account would you like to withdraw money from? ");
+            System.out.print("Which account would you like to withdraw money from? (savings/checking)");
             String account = scan.nextLine();
             if (account.equals("savings")) {
                 System.out.print("How much money would you like to withdraw? You can only withdraw $5s and $20s and do not include $ in your answer. ");
@@ -128,7 +128,7 @@ public class ATM {
         }
         if (choice == 2) {
             // deposits money into savings or checking account
-            System.out.print("Which account would you like to deposit money into? ");
+            System.out.print("Which account would you like to deposit money into? (savings/checking)");
             String account = scan.nextLine();
             if (account.equals("savings")) {
                 System.out.print("How much money would you like to deposit? ");
@@ -153,7 +153,7 @@ public class ATM {
         }
         if (choice == 3) {
             // transfers money between savings and checking accounts
-            System.out.print("Which account would you like to transfer money to? ");
+            System.out.print("Which account would you like to transfer money to? (savings/checking)");
             String transferTo = scan.nextLine();
             if (transferTo.equals("savings")) {
                 System.out.print("How much money would you like to transfer to savings? ");

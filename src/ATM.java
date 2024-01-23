@@ -66,6 +66,7 @@ public class ATM {
         scan.nextLine();
         if (choice == 1) {
             // withdraws money from savings or checking account
+            // tells user to choose between savings or checking
             System.out.print("Which account would you like to withdraw money from? (savings/checking)");
             String account = scan.nextLine();
             if (account.equals("savings")) {
